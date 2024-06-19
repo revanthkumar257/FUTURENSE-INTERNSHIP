@@ -1,8 +1,6 @@
--- Create database and use it
 CREATE DATABASE krish;
 USE krish;
 
--- Create Mobile_detail table
 CREATE TABLE Mobile_detail (
     mobile_number INT,
     mobile_id INT,
@@ -10,11 +8,9 @@ CREATE TABLE Mobile_detail (
     manufacturing_year INT
 );
 
--- Show tables and columns from Mobile_detail
 SHOW TABLES;
 SHOW COLUMNS FROM Mobile_detail;
 
--- Create supplie table
 CREATE TABLE supplie (
     s_id INT,
     s_name VARCHAR(50),
@@ -23,11 +19,9 @@ CREATE TABLE supplie (
     location VARCHAR(30) CHECK (location IN ('Mumbai', 'Delhi', 'Chennai'))
 );
 
--- Show tables and columns from supplie
 SHOW TABLES;
 SHOW COLUMNS FROM supplie;
 
--- Create customer_details table
 CREATE TABLE customer_details (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(100),
@@ -35,7 +29,6 @@ CREATE TABLE customer_details (
     phone VARCHAR(10)
 );
 
--- Create order_details table
 CREATE TABLE order_details (
     order_id INT,
     customer_id INT,
@@ -46,7 +39,6 @@ CREATE TABLE order_details (
     
 );
 
--- Create payment_details table with a foreign key constraint
 CREATE TABLE payment_details (
     payment_id INT PRIMARY KEY,
     order_id INT,
@@ -56,7 +48,6 @@ CREATE TABLE payment_details (
     FOREIGN KEY (order_id) REFERENCES order_details(order_id)
 );
 
--- Insert values into supplie table
 INSERT INTO supplie (s_id, s_name, sprice, stock, location) VALUES
 (1, 'HP Laptop', 50000, 15, 'Mumbai'),
 (2, 'Realme Mobile', 20000, 30, 'Delhi'),
@@ -66,7 +57,6 @@ INSERT INTO supplie (s_id, s_name, sprice, stock, location) VALUES
 (6, 'Mac Book', 78000, 6, 'Delhi'),
 (7, 'JBL speaker', 6000, 2, 'Delhi');
 
--- Insert values into customer_details table
 INSERT INTO customer_details (customer_id, customer_name, customer_email, phone) VALUES
 (101, 'Ravi', 'ravi@example.com', '1234567890'),
 (102, 'Rahul', 'rahul@example.com', '1234567891'),
@@ -74,30 +64,24 @@ INSERT INTO customer_details (customer_id, customer_name, customer_email, phone)
 (104, 'Purvesh', 'purvesh@example.com', '1234567893'),
 (105, 'Sanjana', 'sanjana@example.com', '1234567894');
 
--- Insert values into order_details table
 INSERT INTO order_details (order_id, customer_id, payment_id, amount) VALUES
 (10001, 102, 3, 2700),
 (10002, 104, 2, 18000),
 (10003, 105, 5, 900),
 (10004, 101, 1, 46000);
 
--- Insert values into payment_details table
 INSERT INTO payment_details (payment_id, order_id, amount, mode, status) VALUES
 (1, 10001, 2700, 'upi', 'completed'),
 (2, 10002, 18000, 'credit', 'completed'),
 (3, 10003, 900, 'debit', 'in process');
 
--- Modify location column in supplie table
 ALTER TABLE supplie 
 MODIFY COLUMN location VARCHAR(30) CHECK (location IN ('Mumbai', 'Delhi', 'Chennai'));
 
--- Show columns from supplie
 SHOW COLUMNS FROM supplie;
 
--- Modify customer_id column in customer_details table
 ALTER TABLE customer_details MODIFY COLUMN customer_id INT NOT NULL;
 
--- Show columns from customer_details
 SHOW COLUMNS FROM customer_details;
 
 -- Make a new table employee with specified column id, name, position and salary.
